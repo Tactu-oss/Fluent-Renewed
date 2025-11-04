@@ -329,7 +329,7 @@ return function(Config)
 		end
 	end)
 
-	function Window:()
+	function Window:Minimize()
 		Window.Minimized = not Window.Minimized
 		Window.Root.Visible = not Window.Minimized
 
