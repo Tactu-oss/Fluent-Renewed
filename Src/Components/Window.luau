@@ -329,30 +329,11 @@ return function(Config)
 		end
 	end)
 
-	function Window:Minimize()
+	function Window:()
 		Window.Minimized = not Window.Minimized
 		Window.Root.Visible = not Window.Minimized
 
 		Window.OnMinimized:Fire(tick(), Window.Root.Visible)
-
-		if not MinimizeNotif then
-			local Key = Library.MinimizeKeybind and Library.MinimizeKeybind.Value or typeof(Library.MinimizeKey) == "string" and Library.MinimizeKey or Library.MinimizeKey.Name
-
-			MinimizeNotif = true
-			
-			Library:Notify({
-				Title = "Interface",
-				Content = `Press {Library.Utilities:Prettify(Key)} to toggle the interface.`,
-				Duration = 6
-			})
-		end
-		if Library.Utilities:GetOS() == "Mobile" then
-			local Icon = Config.Mobile.GetIcon(Window.Minimized)
-			Window.HideButton.Image = Icon.Image
-			Window.HideButton.ImageRectOffset = Icon.ImageRectOffset
-			Window.HideButton.ImageRectSize = Icon.ImageRectSiz
-		end
-		Window.PostMinimized:Fire(tick(), Window.Root.Visible)
 	end
 
 	Creator.AddSignal(UserInputService.InputBegan, function(Input)
