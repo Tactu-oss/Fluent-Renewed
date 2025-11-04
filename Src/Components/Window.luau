@@ -332,6 +332,7 @@ return function(Config)
 	function Window:Minimize()
 		Window.Minimized = not Window.Minimized
 		Window.Root.Visible = not Window.Minimized
+print("e")
 		Window.OnMinimized:Fire(tick(), Window.Root.Visible)
 	end
 
